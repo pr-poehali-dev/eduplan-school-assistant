@@ -63,20 +63,16 @@ export default function Index() {
             твоим сном и держит расписание в порядке.
           </p>
           <div className="hero-actions" id="download">
-            <a href="#" className="btn-primary">
+            <a href="https://disk.yandex.ru/d/umuf2aKak4AAww" target="_blank" rel="noopener noreferrer" className="btn-primary">
               <Icon name="Smartphone" size={18} />
-              App Store
+              Скачать на Android
             </a>
-            <a href="#" className="btn-primary btn-android">
-              <Icon name="Smartphone" size={18} />
-              Google Play
-            </a>
-            <a href="#" className="btn-ghost">
+            <a href="https://disk.yandex.ru/d/H4miJpArcGD-yg" target="_blank" rel="noopener noreferrer" className="btn-ghost">
               <Icon name="Monitor" size={16} />
-              Веб-версия
+              Скачать на ПК
             </a>
           </div>
-          <p className="hero-note">Бесплатно · iOS & Android · Без рекламы</p>
+          <p className="hero-note">Бесплатно · Без рекламы</p>
         </div>
 
         {/* Floating mock phone */}
@@ -133,10 +129,10 @@ export default function Index() {
           </div>
           {/* Floating badges */}
           <div className="float-badge float-badge-1">
-            <Icon name="Star" size={12} />4.9 рейтинг
+            <Icon name="Smartphone" size={12} />Android
           </div>
           <div className="float-badge float-badge-2">
-            <Icon name="Users" size={12} />50K+ учеников
+            <Icon name="Monitor" size={12} />Windows / Mac
           </div>
         </div>
       </section>
@@ -170,32 +166,20 @@ export default function Index() {
             Никаких подписок, никакой рекламы. Просто скачай и начни учиться лучше.
           </p>
           <div className="cta-btns">
-            <a href="#" className="store-btn">
-              <Icon name="Apple" size={20} />
+            <a href="https://disk.yandex.ru/d/umuf2aKak4AAww" target="_blank" rel="noopener noreferrer" className="store-btn">
+              <Icon name="Smartphone" size={22} />
               <div>
-                <span className="store-btn-sub">Скачать в</span>
-                <span className="store-btn-main">App Store</span>
+                <span className="store-btn-sub">Скачать для</span>
+                <span className="store-btn-main">Android</span>
               </div>
             </a>
-            <a href="#" className="store-btn">
-              <span className="store-android-icon">▶</span>
+            <a href="https://disk.yandex.ru/d/H4miJpArcGD-yg" target="_blank" rel="noopener noreferrer" className="store-btn">
+              <Icon name="Monitor" size={22} />
               <div>
-                <span className="store-btn-sub">Скачать в</span>
-                <span className="store-btn-main">Google Play</span>
+                <span className="store-btn-sub">Скачать для</span>
+                <span className="store-btn-main">ПК</span>
               </div>
             </a>
-          </div>
-          <div className="cta-stats">
-            {[
-              { n: "50K+", l: "учеников" },
-              { n: "4.9", l: "рейтинг" },
-              { n: "0₽", l: "навсегда" },
-            ].map((s, i) => (
-              <div key={i} className="cta-stat">
-                <span className="cta-stat-num">{s.n}</span>
-                <span className="cta-stat-label">{s.l}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
