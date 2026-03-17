@@ -1,328 +1,210 @@
-import { useState } from "react";
 import Icon from "@/components/ui/icon";
-
-const NAV_ITEMS = [
-  { id: "home", label: "Главная" },
-  { id: "sync", label: "Синхронизация" },
-  { id: "notifications", label: "Уведомления" },
-];
 
 const FEATURES = [
   {
     icon: "BookOpen",
     title: "Умная домашка",
-    desc: "Планировщик сам распределяет задания по дням, учитывая сложность и дедлайны.",
-    color: "from-violet-500 to-purple-600",
-    glow: "shadow-violet-500/30",
+    desc: "Планировщик распределяет задания по дням с учётом сложности и дедлайнов.",
   },
   {
     icon: "Moon",
     title: "Режим сна",
-    desc: "Напоминания об отдыхе и персональный график сна для продуктивного дня.",
-    color: "from-blue-500 to-cyan-500",
-    glow: "shadow-blue-500/30",
+    desc: "Напоминания об отдыхе и персональный график для продуктивного следующего дня.",
   },
   {
-    icon: "Zap",
-    title: "Быстрые задачи",
-    desc: "Добавляй задания за секунды — голосом, текстом или фото страницы учебника.",
-    color: "from-orange-400 to-pink-500",
-    glow: "shadow-orange-500/30",
-  },
-];
-
-const SYNC_ITEMS = [
-  { icon: "Smartphone", label: "iOS & Android" },
-  { icon: "Monitor", label: "Веб-версия" },
-  { icon: "Users", label: "Класс & семья" },
-  { icon: "Cloud", label: "Облако" },
-];
-
-const NOTIFICATIONS = [
-  {
-    time: "08:00",
-    type: "Домашка",
-    text: "Математика — стр. 45, задачи 1-5",
-    tag: "warn",
-    icon: "BookOpen",
+    icon: "Bell",
+    title: "Уведомления",
+    desc: "Умные оповещения о домашке, переменах и важных событиях без спама.",
   },
   {
-    time: "22:30",
-    type: "Сон",
-    text: "Пора ложиться спать! Подъём в 7:00",
-    tag: "sleep",
-    icon: "Moon",
-  },
-  {
-    time: "14:00",
-    type: "Перерыв",
-    text: "Сделай 10 минут отдыха и разминки",
-    tag: "info",
-    icon: "Coffee",
-  },
-  {
-    time: "17:00",
-    type: "Синхронизация",
-    text: "Расписание обновлено учителем",
-    tag: "sync",
     icon: "RefreshCw",
+    title: "Синхронизация",
+    desc: "Все устройства в реальном времени. Даже без интернета всё работает.",
   },
+];
+
+const SCREENS = [
+  { emoji: "📋", label: "Домашка" },
+  { emoji: "🌙", label: "Сон" },
+  { emoji: "📅", label: "Расписание" },
+  { emoji: "🔔", label: "Уведомления" },
 ];
 
 export default function Index() {
-  const [activeNav, setActiveNav] = useState("home");
-
-  const scrollTo = (id: string) => {
-    setActiveNav(id);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <div className="edu-root">
-      {/* NAV */}
-      <nav className="edu-nav">
-        <div className="edu-nav-inner">
-          <div className="edu-logo">
-            <span className="edu-logo-icon">📚</span>
-            <span className="edu-logo-text">EduPlan</span>
+    <div className="app-shell">
+      {/* ── NAV ── */}
+      <header className="app-nav">
+        <div className="app-nav-inner">
+          <div className="app-logo">
+            <span className="app-logo-mark">EP</span>
+            <span className="app-logo-name">EduPlan</span>
           </div>
-          <div className="edu-nav-links">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.id}
-                className={`edu-nav-link ${activeNav === item.id ? "active" : ""}`}
-                onClick={() => scrollTo(item.id)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-          <button className="edu-cta-btn-sm">Скачать</button>
+          <a href="#download" className="app-dl-btn">
+            <Icon name="Download" size={15} />
+            Скачать
+          </a>
         </div>
-      </nav>
+      </header>
 
-      {/* HERO */}
-      <section id="home" className="edu-hero">
-        <div className="edu-hero-bg">
-          <div className="blob blob-1" />
-          <div className="blob blob-2" />
-          <div className="blob blob-3" />
-          <div className="grid-overlay" />
-        </div>
-        <div className="edu-hero-content">
-          <div className="edu-badge">
-            <Icon name="Sparkles" size={14} />
-            <span>Новый уровень учёбы</span>
-          </div>
-          <h1 className="edu-hero-title">
-            Планируй учёбу —<br />
-            <span className="edu-gradient-text">побеждай каждый день</span>
+      {/* ── HERO ── */}
+      <section className="hero">
+        <div className="hero-noise" />
+        <div className="hero-glow-1" />
+        <div className="hero-glow-2" />
+        <div className="hero-inner">
+          <p className="hero-eyebrow">Приложение для школьников</p>
+          <h1 className="hero-title">
+            Успевай всё.<br />
+            <em>Без стресса.</em>
           </h1>
-          <p className="edu-hero-sub">
-            Умный планировщик для школьников: домашка, сон, расписание
-            и синхронизация со всеми устройствами
+          <p className="hero-sub">
+            EduPlan — планировщик, который сам раскидывает домашку, следит за
+            твоим сном и держит расписание в порядке.
           </p>
-          <div className="edu-hero-actions">
-            <button className="edu-cta-btn">
-              <Icon name="Download" size={18} />
-              Скачать бесплатно
-            </button>
-            <button className="edu-ghost-btn">
-              <Icon name="Play" size={18} />
-              Смотреть видео
-            </button>
+          <div className="hero-actions" id="download">
+            <a href="#" className="btn-primary">
+              <Icon name="Smartphone" size={18} />
+              App Store
+            </a>
+            <a href="#" className="btn-primary btn-android">
+              <Icon name="Smartphone" size={18} />
+              Google Play
+            </a>
+            <a href="#" className="btn-ghost">
+              <Icon name="Monitor" size={16} />
+              Веб-версия
+            </a>
           </div>
-          <div className="edu-hero-stats">
-            <div className="edu-stat">
-              <span className="edu-stat-num">50K+</span>
-              <span className="edu-stat-label">учеников</span>
-            </div>
-            <div className="edu-stat-divider" />
-            <div className="edu-stat">
-              <span className="edu-stat-num">4.9★</span>
-              <span className="edu-stat-label">рейтинг</span>
-            </div>
-            <div className="edu-stat-divider" />
-            <div className="edu-stat">
-              <span className="edu-stat-num">100%</span>
-              <span className="edu-stat-label">бесплатно</span>
-            </div>
-          </div>
+          <p className="hero-note">Бесплатно · iOS & Android · Без рекламы</p>
         </div>
 
-        {/* Floating app card */}
-        <div className="edu-hero-card">
-          <div className="edu-app-preview">
-            <div className="edu-app-header">
-              <span className="edu-app-greeting">Привет, Саша 👋</span>
-              <div className="edu-app-time">22:15</div>
-            </div>
-            <div className="edu-app-sleep-card">
-              <Icon name="Moon" size={20} />
-              <div>
-                <div className="edu-app-sleep-title">Режим сна</div>
-                <div className="edu-app-sleep-sub">Подъём через 8 ч 45 мин</div>
-              </div>
-              <div className="edu-app-sleep-badge">Скоро</div>
-            </div>
-            <div className="edu-app-tasks-title">Домашка на завтра</div>
-            <div className="edu-app-tasks">
-              {[
-                { sub: "Математика", task: "§12, задачи 1–6", done: true },
-                { sub: "Русский язык", task: "Упр. 45, диктант", done: false },
-                { sub: "История", task: "Читать параграф 8", done: false },
-              ].map((t, i) => (
-                <div key={i} className={`edu-app-task ${t.done ? "done" : ""}`}>
-                  <div className={`edu-task-check ${t.done ? "checked" : ""}`}>
-                    {t.done && <Icon name="Check" size={10} />}
-                  </div>
-                  <div>
-                    <div className="edu-task-sub">{t.sub}</div>
-                    <div className="edu-task-name">{t.task}</div>
-                  </div>
+        {/* Floating mock phone */}
+        <div className="phone-wrap">
+          <div className="phone">
+            <div className="phone-notch" />
+            <div className="phone-screen">
+              <div className="phone-status">
+                <span>09:41</span>
+                <div className="phone-status-icons">
+                  <Icon name="Wifi" size={12} />
+                  <Icon name="Battery" size={12} />
                 </div>
-              ))}
+              </div>
+              <p className="phone-greeting">Привет, Саша 👋</p>
+              <p className="phone-date">Среда, 12 марта</p>
+
+              <div className="phone-card sleep">
+                <div className="phone-card-icon">
+                  <Icon name="Moon" size={16} />
+                </div>
+                <div>
+                  <p className="phone-card-title">Ложись спать в 22:00</p>
+                  <p className="phone-card-sub">Подъём через 8ч 45мин</p>
+                </div>
+              </div>
+
+              <p className="phone-section-title">Домашка на завтра</p>
+              <div className="phone-tasks">
+                {[
+                  { s: "Математика", t: "§12, задачи 1–6", done: true },
+                  { s: "Русский", t: "Упр. 45", done: false },
+                  { s: "История", t: "Параграф 8", done: false },
+                ].map((item, i) => (
+                  <div key={i} className={`phone-task ${item.done ? "done" : ""}`}>
+                    <span className={`phone-check ${item.done ? "checked" : ""}`}>
+                      {item.done && <Icon name="Check" size={8} />}
+                    </span>
+                    <div>
+                      <span className="phone-task-sub">{item.s}</span>
+                      <span className="phone-task-name">{item.t}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="phone-progress-wrap">
+                <span>Готово</span><span>1 / 3</span>
+              </div>
+              <div className="phone-progress-track">
+                <div className="phone-progress-fill" style={{ width: "33%" }} />
+              </div>
             </div>
-            <div className="edu-app-progress">
-              <span>Выполнено</span>
-              <span>1/3</span>
-            </div>
-            <div className="edu-progress-bar">
-              <div className="edu-progress-fill" style={{ width: "33%" }} />
-            </div>
+          </div>
+          {/* Floating badges */}
+          <div className="float-badge float-badge-1">
+            <Icon name="Star" size={12} />4.9 рейтинг
+          </div>
+          <div className="float-badge float-badge-2">
+            <Icon name="Users" size={12} />50K+ учеников
           </div>
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="edu-features">
-        <div className="edu-section-inner">
-          <div className="edu-section-badge">Возможности</div>
-          <h2 className="edu-section-title">Всё для успешной учёбы</h2>
-          <p className="edu-section-sub">Три ключевых инструмента, которые изменят твой подход к учёбе</p>
-          <div className="edu-features-grid">
+      {/* ── FEATURES ── */}
+      <section className="features">
+        <div className="section-inner">
+          <p className="section-label">Возможности</p>
+          <h2 className="section-title">Всё, что нужно для учёбы</h2>
+          <div className="features-grid">
             {FEATURES.map((f, i) => (
-              <div key={i} className={`edu-feature-card shadow-lg ${f.glow}`}>
-                <div className={`edu-feature-icon bg-gradient-to-br ${f.color}`}>
-                  <Icon name={f.icon} size={24} />
+              <div key={i} className="feature-card">
+                <div className="feature-icon-wrap">
+                  <Icon name={f.icon} size={22} />
                 </div>
-                <h3 className="edu-feature-title">{f.title}</h3>
-                <p className="edu-feature-desc">{f.desc}</p>
-                <div className="edu-feature-arrow">
-                  <Icon name="ArrowRight" size={16} />
-                </div>
+                <h3 className="feature-title">{f.title}</h3>
+                <p className="feature-desc">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SYNC */}
-      <section id="sync" className="edu-sync">
-        <div className="edu-section-inner edu-sync-inner">
-          <div className="edu-sync-left">
-            <div className="edu-section-badge">Синхронизация</div>
-            <h2 className="edu-section-title" style={{ textAlign: "left" }}>
-              Один аккаунт —<br />все устройства
-            </h2>
-            <p className="edu-section-sub" style={{ textAlign: "left" }}>
-              Расписание и домашние задания мгновенно синхронизируются между телефоном, планшетом и компьютером. Даже без интернета.
-            </p>
-            <div className="edu-sync-items">
-              {SYNC_ITEMS.map((s, i) => (
-                <div key={i} className="edu-sync-item">
-                  <div className="edu-sync-icon">
-                    <Icon name={s.icon} size={20} />
-                  </div>
-                  <span>{s.label}</span>
-                </div>
-              ))}
-            </div>
-            <button className="edu-cta-btn">
-              <Icon name="RefreshCw" size={18} />
-              Подключить синхронизацию
-            </button>
-          </div>
-          <div className="edu-sync-right">
-            <div className="edu-sync-visual">
-              <div className="edu-sync-center-icon">
-                <Icon name="RefreshCw" size={32} />
-              </div>
-              {SYNC_ITEMS.map((s, i) => (
-                <div key={i} className={`edu-sync-orbit edu-sync-orbit-${i}`}>
-                  <div className="edu-sync-orbit-icon">
-                    <Icon name={s.icon} size={18} />
-                  </div>
-                </div>
-              ))}
-              <div className="edu-sync-ring edu-sync-ring-1" />
-              <div className="edu-sync-ring edu-sync-ring-2" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* NOTIFICATIONS */}
-      <section id="notifications" className="edu-notifs">
-        <div className="edu-section-inner">
-          <div className="edu-section-badge">Уведомления</div>
-          <h2 className="edu-section-title">
-            Никогда ничего<br />не пропустишь
-          </h2>
-          <p className="edu-section-sub">Умные напоминания точно в нужный момент</p>
-          <div className="edu-notifs-list">
-            {NOTIFICATIONS.map((n, i) => (
-              <div
-                key={i}
-                className={`edu-notif-card edu-notif-${n.tag}`}
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <div className="edu-notif-time">{n.time}</div>
-                <div className={`edu-notif-icon-wrap edu-notif-icon-${n.tag}`}>
-                  <Icon name={n.icon} size={18} />
-                </div>
-                <div className="edu-notif-body">
-                  <div className="edu-notif-type">{n.type}</div>
-                  <div className="edu-notif-text">{n.text}</div>
-                </div>
-                <div className={`edu-notif-dot edu-notif-dot-${n.tag}`} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA BOTTOM */}
-      <section className="edu-bottom-cta">
-        <div className="blob blob-cta-1" />
-        <div className="blob blob-cta-2" />
-        <div className="edu-bottom-cta-inner">
-          <h2 className="edu-bottom-title">Готов учиться умнее?</h2>
-          <p className="edu-bottom-sub">
-            Присоединяйся к 50 000 школьников, которые уже используют EduPlan
+      {/* ── DOWNLOAD CTA ── */}
+      <section className="cta-section">
+        <div className="cta-glow" />
+        <div className="section-inner cta-inner">
+          <p className="section-label">Скачай сейчас</p>
+          <h2 className="cta-title">Бесплатно.<br />Навсегда.</h2>
+          <p className="cta-sub">
+            Никаких подписок, никакой рекламы. Просто скачай и начни учиться лучше.
           </p>
-          <div className="edu-bottom-btns">
-            <button className="edu-cta-btn edu-cta-btn-lg">
-              <Icon name="Download" size={20} />
-              Скачать для Android
-            </button>
-            <button className="edu-cta-btn edu-cta-btn-lg edu-cta-btn-ios">
-              <Icon name="Smartphone" size={20} />
-              Скачать для iOS
-            </button>
+          <div className="cta-btns">
+            <a href="#" className="store-btn">
+              <Icon name="Apple" size={20} />
+              <div>
+                <span className="store-btn-sub">Скачать в</span>
+                <span className="store-btn-main">App Store</span>
+              </div>
+            </a>
+            <a href="#" className="store-btn">
+              <span className="store-android-icon">▶</span>
+              <div>
+                <span className="store-btn-sub">Скачать в</span>
+                <span className="store-btn-main">Google Play</span>
+              </div>
+            </a>
+          </div>
+          <div className="cta-stats">
+            {[
+              { n: "50K+", l: "учеников" },
+              { n: "4.9", l: "рейтинг" },
+              { n: "0₽", l: "навсегда" },
+            ].map((s, i) => (
+              <div key={i} className="cta-stat">
+                <span className="cta-stat-num">{s.n}</span>
+                <span className="cta-stat-label">{s.l}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="edu-footer">
-        <div className="edu-footer-inner">
-          <div className="edu-logo">
-            <span className="edu-logo-icon">📚</span>
-            <span className="edu-logo-text">EduPlan</span>
-          </div>
-          <p className="edu-footer-copy">© 2026 EduPlan — планировщик для школьников</p>
+      {/* ── FOOTER ── */}
+      <footer className="app-footer">
+        <div className="app-nav-inner">
+          <span className="footer-logo">EduPlan</span>
+          <span className="footer-copy">© 2025 · Сделано для школьников</span>
         </div>
       </footer>
     </div>
