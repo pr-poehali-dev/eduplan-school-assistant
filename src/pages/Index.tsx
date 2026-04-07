@@ -67,7 +67,7 @@ export default function Index() {
               <Icon name="Smartphone" size={18} />
               Скачать на Android
             </a>
-            <a href="https://disk.yandex.ru/d/H4miJpArcGD-yg" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+            <a href="https://disk.yandex.ru/d/K7F7yA0YIsW7Mw" target="_blank" rel="noopener noreferrer" className="btn-ghost">
               <Icon name="Monitor" size={16} />
               Скачать на ПК
             </a>
@@ -173,7 +173,7 @@ export default function Index() {
                 <span className="store-btn-main">Android</span>
               </div>
             </a>
-            <a href="https://disk.yandex.ru/d/H4miJpArcGD-yg" target="_blank" rel="noopener noreferrer" className="store-btn">
+            <a href="https://disk.yandex.ru/d/K7F7yA0YIsW7Mw" target="_blank" rel="noopener noreferrer" className="store-btn">
               <Icon name="Monitor" size={22} />
               <div>
                 <span className="store-btn-sub">Скачать для</span>
